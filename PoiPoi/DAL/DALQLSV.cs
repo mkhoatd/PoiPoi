@@ -75,6 +75,32 @@ namespace PoiPoi.DAL
             return data;
         }
 
+        public void AddSVDAL(SV s)
+        {
+            string query = $"update SV set NameSV='{s.Name}', LopId={s.ID_Lop}, Gender={(s.Gender?1:0)}, " +
+                           $"NS='{s.NS.ToString("yyyy/MM/dd")}', DTB={s.DTB}, Anh={(s.Anh?1:0)}, HB={(s.HocBa?1:0)} " +
+                           $", CCCD={(s.CMND?1:0)} where MSSV={s.MSSV}";
+            DBHelper.Instance.ExcuteDb(query);
+        }
+
+        public void UpdateSVDAL(SV s)
+        {
+            string query = $"insert into SV values ({s.MSSV}, '{s.Name}', {s.ID_Lop}, {(s.Gender?1:0)}, " +
+                           $"'{s.NS.ToString("yyyy/MM/dd")}', {s.DTB}, {(s.Anh?1:0)}, {(s.HocBa?1:0)}, {(s.CMND?1:0)})";
+            DBHelper.Instance.ExcuteDb(query);
+        }
+        public void DelSVDAL(SV s)
+        {
+            string query = "delete from SV where MSSV=" + s.MSSV;
+            DBHelper.Instance.ExcuteDb(query);
+        }
+
+        public void DelSVDAL(string MSSV)
+        {
+            string query = "delete from SV where MSSV=" + MSSV;
+            DBHelper.Instance.ExcuteDb(query);
+        }
+
     }
 
 }

@@ -41,7 +41,13 @@ namespace PoiPoi.DAL
             cnn.Close();
             return dt;
         }
+        public void ExcuteDb(string query)
+        {
+            SqlCommand cmd = new SqlCommand(query, cnn);
+            cnn.Open();
+            cmd.ExecuteNonQuery();
+            cnn.Close();
+        }
 
-            
     }
 }

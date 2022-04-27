@@ -15,5 +15,23 @@ namespace PoiPoi.DTO
         {
             return Text;
         }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                CBBItem s = (CBBItem)obj;
+                return this.Value == s.Value && this.Text == s.Text;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Value.GetHashCode();
+        }
     }
 }
